@@ -1,6 +1,6 @@
 #include <iostream>
 
-#include "board.h"
+#include "board/board.h"
 #include "command.h"
 
 Board board;
@@ -28,8 +28,10 @@ int main() {
         ClearBackground(BG_COLOR);
 
         board.drawBoard();
-        board.drawFunction(&cube);
+        board.drawFunction();
         board.drawPanel();
+        board.drawMenu();
+        board.drawFunctionList();
 
         EndDrawing();
     }

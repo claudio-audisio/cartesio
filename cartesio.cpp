@@ -17,8 +17,13 @@ void init() {
     board.init(width, height);
 }
 
-int main() {
+int main(int argc, char** argv) {
     init();
+
+    if (argc == 2) {
+        board.clearFunctions();
+        board.addFunction({argv[1], argv[1], nullptr});
+    }
 
     while (!WindowShouldClose()) {
         keyPressionManager(board);

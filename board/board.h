@@ -37,14 +37,14 @@ public:
         scaleFactorX = scaleFactorY = 2;
         quadrant = 5;
         ready = true;
-        natural = true;
-        linePoint = false;
+        natural = false;
+        linePoint = true;
         editMenu = {false, false, false};
         setReferences();
         parser = nullptr;
         panelType = None;
         inputText = static_cast<char*>(calloc(sizeof(char), 1024));
-        addFunction(SPECIAL_FUNCTIONS[2]);
+        addFunction({STARTING_FUNCTION, STARTING_FUNCTION, nullptr});
         setStyle();
     }
 
@@ -239,8 +239,12 @@ public:
         }
     }
 
-    void reset() {
+    void clearFunctions() {
         functions.clear();
+    }
+
+    void reset() {
+        clearFunctions();
         startEnteringFunction();
     }
 

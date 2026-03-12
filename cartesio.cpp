@@ -1,7 +1,7 @@
 #include <iostream>
 
 #include "board/board.h"
-#include "command.h"
+#include "board/command.h"
 
 Board board;
 float width, height;
@@ -31,6 +31,7 @@ int main() {
         board.drawFunction();
         board.drawPanel();
         board.drawMenu();
+        board.drawSpecials();
         board.drawFunctionList();
 
         EndDrawing();

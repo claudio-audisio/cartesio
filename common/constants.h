@@ -1,13 +1,16 @@
 #pragma once
 
 #include <vector>
+#include <map>
 
 #include "raylib.h"
-
 #define RAYGUI_IMPLEMENTATION
-#include "raygui/raygui.h"
+#include "../raygui/raygui.h"
 
-#define FPS 60
+#include "../function/function.h"
+
+
+#define FPS 20
 
 // dimensions
 #define BOARD_PADDING 50
@@ -22,7 +25,7 @@
 #define AXIS_COLOR      CLITERAL(Color){ 128, 128, 128, 255 }
 #define LINE_COLOR      ORANGE
 #define TEXT_COLOR      RAYWHITE
-#define ERROR_COLOR     RED
+#define WARNING_COLOR   CLITERAL(Color){ 255, 60, 60, 255 }
 #define BG_COLOR        CLITERAL(Color){ 31, 31, 31, 255 }
 #define BG_COLOR_TRASP  CLITERAL(Color){ 31, 31, 31, 200 }
 
@@ -53,27 +56,51 @@ inline const std::vector LINE_COLORS = {
 // menu
 #define MENU "menu;new board;add function;reset view;built-in stuff;shortcuts;quit"
 
-// help
-const std::string SHORTCUTS = "H       show shortcuts\n"
-                              "N       reset board\n"
-                              "F       enter function\n"
-                              "L       line/point\n"
-                              "B       show built-in stuff\n"
-                              "+/-     zoom in/out\n"
-                              "arrows  quadrant selection\n"
-                              "O       reset view\n"
-                              "Q       quit";
+// special functions
+inline const std::vector<Function> SPECIAL_FUNCTIONS = {
+    {
+        "square wave",
+        "y = (4/_pi)*(sin(x)+(1/3)*sin(3*x)+(1/5)*sin(5*x)+(1/7)*sin(7*x)+(1/9)*sin(9*x)+(1/11)*sin(11*x)+(1/13)*sin(13*x)+(1/15)*sin(15*x)+(1/17)*sin(17*x)+(1/19)*sin(19*x))",
+        nullptr
+    },
+    {
+        "collatz step",
+        "y = collatzSteps(x)",
+        &FunctionProvider::collatzSteps
+    },
+    {
+        "leibniz pi approx",
+        "y = leibnizPi(x)",
+        &FunctionProvider::leibnizPi
+    },
+    {
+        "e approx",
+        "y = eApprox(x)",
+        &FunctionProvider::eApprox
+    },
+    {
+        "weierstrass",
+        "y = weierstrass(x)",
+        &FunctionProvider::weierstrass
+    }
+};
 
+// help
 inline const std::vector<std::string> HELP_LINES = {
-    "H       show/hide shortcuts",
-    "N       reset board",
-    "F       enter function",
-    "L       line/point",
-    "B       show/hide built-in stuff",
-    "+/-     zoom in/out",
-    "arrows  quadrant selection",
-    "O       reset view",
-    "Q       quit"
+    "H         show/hide shortcuts",
+    "N         reset board",
+    "F         enter function",
+    "R         real/natural plane",
+    "L         line/point",
+    "B         show/hide built-in stuff",
+    "+/-       zoom in/out",
+    "keypad 4  zoom out axis X",
+    "keypad 6  zoom in axis X",
+    "keypad 2  zoom out axis Y",
+    "keypad 8  zoom in axis Y",
+    "arrows    quadrant selection",
+    "O         reset view",
+    "Q         quit"
 };
 
 inline const std::vector<std::string> BUILTIN_FUNCTIONS = {

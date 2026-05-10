@@ -2,6 +2,7 @@
 
 #include <cmath>
 
+#include "cl_types.h"
 #include "cache.h"
 #include "../muparser/muParser.h"
 #include "../common/type.h"
@@ -30,7 +31,7 @@ public:
 
 
     static double collatzSteps(const double value) {
-        LL n = static_cast<LL>(value);
+        cl::LL n = static_cast<cl::LL>(value);
         int steps = 0;
 
         if (n <= 0) {
@@ -85,6 +86,29 @@ public:
         }
 
         return sum;
+    }
+
+    static double sievePrimes(const double value) {
+        const int n = static_cast<int>(value);
+
+        if (n <= 1) {
+            return std::numeric_limits<double>::quiet_NaN();
+        }
+
+        std::vector<bool> isPrime(n + 1, true);
+        isPrime[0] = isPrime[1] = false;
+
+        for (int i = 2; i * i <= n; i++)
+            if (isPrime[i])
+                for (int j = i * i; j <= n; j += i)
+                    isPrime[j] = false;
+
+        cl::LL count = 0;
+        for (int i = 2; i <= n; i++)
+            if (isPrime[i])
+                count++;
+
+        return count;
     }
 
 };

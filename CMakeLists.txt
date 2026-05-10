@@ -21,12 +21,14 @@ foreach(dir ${SRC_FOLDERS})
     list(APPEND ALL_SOURCES ${FOLDER_FILES})
 endforeach()
 
+add_subdirectory(../claLib ${CMAKE_BINARY_DIR}/claLib)
 add_library(cartesioLib ${ALL_SOURCES})
 
 target_include_directories(cartesioLib PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
 
 add_executable(cartesio cartesio.cpp)
 
+target_link_libraries(cartesio PRIVATE claLib)
 target_link_libraries(cartesio PRIVATE -lraylib -lGL -lm -lpthread -ldl -lrt -lX11)
 target_link_libraries(cartesio PRIVATE cartesioLib)
 

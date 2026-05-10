@@ -3,7 +3,8 @@
 #include <chrono>
 #include <format>
 #include <functional>
-
+#include "cl_numbers.h"
+#include "cl_time.h"
 #include "../common/constants.h"
 #include "../function/function.h"
 #include "../utils/utils.h"
@@ -200,7 +201,7 @@ public:
                 for (int x = xAxis.x; x < xAxis.y; x++) {
                     varX = static_cast<double>(x) / scaleX;
 
-                    if (natural && !isWholeNumber(varX)) {
+                    if (natural && !cl::isWholeNumber(varX)) {
                         continue;
                     }
 
@@ -223,7 +224,7 @@ public:
                     prevPoint = point;
                 }
 
-                auto time = getElapsedMillis(start);
+                auto time = cl::getElapsedMillis(start);
 
                 if (time > 1000 / FPS) {
                     cout << format("{} {} ms", functions[i].name, time) << endl;
@@ -452,10 +453,6 @@ public:
         }
 
         scaleY = powl(10, scaleFactorY);
-    }
-
-    static bool isWholeNumber(const double x) {
-        return fabs(x - round(x)) < (x / 1e6);
     }
 
 };

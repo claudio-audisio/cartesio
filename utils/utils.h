@@ -27,19 +27,5 @@ static string toString(const Vector2 point) {
     return format("{:.4g} : {:.4g}", point.x, point.y);
 }
 
-inline unsLL getElapsedNanos(const chrono::time_point<chrono::steady_clock> start) {
-    return chrono::duration_cast<chrono::nanoseconds>(chrono::steady_clock::now() - start).count();
-}
 
-inline unsLL getElapsedMicros(const chrono::time_point<chrono::steady_clock> start) {
-    return chrono::duration_cast<chrono::microseconds>(chrono::steady_clock::now() - start).count();
-}
-
-inline unsLL getElapsedMillis(const chrono::time_point<chrono::steady_clock> start) {
-    return chrono::duration_cast<chrono::milliseconds>(chrono::steady_clock::now() - start).count();
-}
-
-inline unsLL getElapsedSeconds(const chrono::time_point<chrono::steady_clock> start) {
-    return chrono::duration_cast<chrono::seconds>(chrono::steady_clock::now() - start).count();
-}
 

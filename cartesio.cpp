@@ -4,16 +4,17 @@
 #include "board/command.h"
 
 Board board;
-float width, height;
 
 void init() {
-    SetConfigFlags(FLAG_WINDOW_UNDECORATED | FLAG_WINDOW_MAXIMIZED);
-    InitWindow(0, 0, "cartesio");
+	const float width = MONITOR_WIDTH / ENV_SCALE;
+	const float height = MONITOR_HEIGHT / ENV_SCALE;
+    SetConfigFlags(FLAG_WINDOW_UNDECORATED | FLAG_WINDOW_HIGHDPI);
+    InitWindow(width, height, "cartesio");
     SetTargetFPS(FPS);
+	const Vector2 dpi   = GetWindowScaleDPI();
 
-    const int monitor = GetCurrentMonitor();
-    width = static_cast<float>(GetMonitorWidth(monitor));
-    height = static_cast<float>(GetMonitorHeight(monitor));
+    SetWindowSize(width * dpi.x, height * dpi.y);
+
     board.init(width, height);
 }
 

@@ -12,6 +12,11 @@
 
 #define FPS 20
 
+// environment
+#define ENV_SCALE 1.25
+#define MONITOR_WIDTH 2560
+#define MONITOR_HEIGHT 1400
+
 // dimensions
 #define BOARD_PADDING 50
 #define AXIS_THICK 1
@@ -82,6 +87,11 @@ inline const std::vector<Function> SPECIAL_FUNCTIONS = {
         "weierstrass",
         "y = weierstrass(x)",
         &FunctionProvider::weierstrass
+    },
+    {
+        "sieve of eratosthenes",
+        "y = sievePrimes(x)",
+        &FunctionProvider::sievePrimes
     }
 };
 

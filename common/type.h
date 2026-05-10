@@ -9,9 +9,6 @@ enum PanelType {
     Builtin
 };
 
-typedef long long LL;
-typedef unsigned long long unsLL;
-
 struct Function {
     string name;
     string definition;
